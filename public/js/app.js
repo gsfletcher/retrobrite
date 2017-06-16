@@ -32,8 +32,19 @@ const App = {
     cell.color = this.selectedColor;
     this.render();
   },
+  resetGrid: function(){
+    this.selectedColor = 'white';
+    this.makeGrid();
+    this.render();
+  },
   render:function(){
     this.root.innerHTML ='';
+    // this is the dynamic resetButton
+    const resetButton = document.createElement('button');
+    resetButton.textContent = 'Reset';
+    resetButton.addEventListener('click',() => this.resetGrid());
+    this.root.appendChild(resetButton);
+    // below is the grid part
     this.grid.forEach((row, rowIndex) =>{
       const rowContainer = document.createElement('div');
       rowContainer.style.height= `${this.cellHeight}px`;
